@@ -20,7 +20,7 @@ class Condensr
     # },
     # gcloud: {
     #     project_id:project_Id,
-    #     key_file: path to key.json  describe the particular key type needed,
+    #     key_file: path to key.json relative from the present working dir,
     #     bucket: bucket_name
     # }
     # })
@@ -35,7 +35,7 @@ class Condensr
     end
 
     if (@client_options[:gcloud])
-      key_file = Condensr.expand_file_path(@client_options[:gcloud][:key_file])
+      key_file =  Pathname.pwd + @client_options[:gcloud][:key_file]
       @gcloud = Gcloud.new(@client_options[:gcloud][:project_id], key_file)
     end
   end
