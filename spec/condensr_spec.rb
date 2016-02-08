@@ -15,7 +15,8 @@ describe Condensr do
       gcloud: {
           project_id: ENV["PROJECT_ID"],
           key_file: ENV["KEY_FILE"],
-          bucket: ENV["GCLOUD_BUCKET"]
+          bucket: ENV["GCLOUD_BUCKET"],
+          key: ENV["GCLOUD_KEY"]
       }
   } }
   let (:s3_options) { {acl: ENV["ACL_TYPE"], file_url: ENV["TEST_FILE_URL"], destination_name: ENV["DESTINATION_NAME"], upload_type: "s3"} }
@@ -43,8 +44,8 @@ describe Condensr do
         end
 
         it "saves to gcloud bucket" do
-          key_file = Condensr.expand_file_path(client_options[:gcloud][:key_file])
-          gcloud = Gcloud.new(client_options[:gcloud][:project_id], key_file)
+          key_file = Condensr.expand_file_path(client_options[:gcloud][:key_file]) if client_options[:gcloud][:key_file]
+          gcloud = Gcloud.new(client_options[:gcloud][:project_id], client_options[:gcloud][:key] || key_file)
           bucket = gcloud.storage.bucket(client_options[:gcloud][:bucket])
           file = bucket.file(gcloud_options[:destination_name])
 
