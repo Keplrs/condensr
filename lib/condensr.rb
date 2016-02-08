@@ -4,7 +4,7 @@ require "condensr/exceptions"
 require "httparty"
 require "aws-sdk"
 require "gcloud"
-require 'pathname'
+require "pathname"
 
 DEFAULT_ACL = 'private'
 
@@ -53,8 +53,9 @@ class Condensr
     options[:file_name] = Condensr.extract_file_name(options[:file_url])
     options[:destination_name] = options[:destination_name].empty? ? options[:file_name] : options[:destination_name]
     file_path = download(options)
-    upload(options, file_path)
+    output = upload(options, file_path)
     clear_file(file_path)
+    output
   end
 
 
