@@ -21,6 +21,7 @@ Or install it yourself as:
 ## Usage
 
 For a Rails application, you should have a condensr.rb in the config/initializers folder and initialze the Condensr class with your storage credentials as follows;
+```
 CONDENSR = Condensr.new({
                           aws: {
                                 access_key_id: foo,
@@ -29,6 +30,7 @@ CONDENSR = Condensr.new({
                                 bucket: foo-foo-bar
                                 }
                           })
+```
 
 So that if you have a file, for example an picture.jpg, you can save this file on your s3 bucket simply by;
 
