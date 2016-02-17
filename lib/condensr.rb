@@ -45,7 +45,7 @@ class Condensr
     # {
     #     upload_type: 'aws' || 'gcloud',
     #     file_url: file_url,
-    #     destination_name: destination_name
+    #     destination_name: destination_name,
     #     acl: optional, 'public-read' as default in the list of aws canned acl (http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html)
     # }
     fail ArgumentError.new("Required options not supplied") if (!options[:upload_type] || !options[:file_url])
