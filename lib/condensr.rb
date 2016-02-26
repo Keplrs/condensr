@@ -43,7 +43,7 @@ class Condensr
   def condense(options)
     # options should be
     # {
-    #     upload_type: 'aws' || 'gcloud',
+    #     upload_type: 's3' || 'gcloud',
     #     file_url: file_url,
     #     destination_name: destination_name,
     #     acl: optional, 'public-read' as default in the list of aws canned acl (http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html)
@@ -51,14 +51,12 @@ class Condensr
     fail ArgumentError.new("Required options not supplied") if (!options[:upload_type] || !options[:file_url])
 
     options[:file_name] = Condensr.extract_file_name(options[:file_url])
-    options[:destination_name] = options[:destination_name].empty? ? options[:file_name] : options[:destination_name]
+    options[:destination_name] = options[:destination_name] ? options[:destination_name] : options[:file_name]
     file_path = download(options)
     output = upload(options, file_path)
     clear_file(file_path)
     output
   end
-
-
 
   def download(options)
     fetch_object = HTTParty.get(options[:file_url])
