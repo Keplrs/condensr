@@ -6,7 +6,7 @@ Condensr helps grab a file from the internet and saves it on cloud storages like
 
 Add this line to your application's Gemfile:
 
-```ruby
+```
 gem 'condensr'
 ```
 
