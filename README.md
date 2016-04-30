@@ -4,7 +4,7 @@ Condensr helps grab a file from the internet and saves it on cloud storages like
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your Gemfile:
 
 ```
 gem 'condensr'
